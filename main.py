@@ -1,34 +1,13 @@
-"""
-This is a echo bot.
-It echoes any incoming text messages.
-"""
+import telebot
 
-import logging
+bot = telebot.TeleBot("896283170:AAEvIuBZNbjtqAnDC8B3ZBgJtuMP5V3AL0g")
 
-from aiogram import Bot, Dispatcher, executor, types
+@bot.message_handler(commands=['start', 'help'])
+def send_welcome(message):
+	bot.reply_to(message, "Howdy, how are you doing?")
 
-API_TOKEN = 'BOT TOKEN HERE'
+@bot.message_handler(func=lambda message: True)
+def echo_all(message):
+	bot.reply_to(message, message.text)
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-
-# Initialize bot and dispatcher
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
-
-
-
-@dp.message_handler(regexp='(^cat[s]?$|puss)')
-async def cats(message: types.Message):
-    with open('data/cats.jpg', 'rb') as photo:
-        await bot.send_photo(message.chat.id, photo, caption='Cats is here 😺',
-                             reply_to_message_id=message.message_id)
-
-
-@dp.message_handler()
-async def echo(message: types.Message):
-    await bot.send_message(message.chat.id, message.text)
-
-
-if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+bot.polling()
