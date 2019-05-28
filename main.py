@@ -1,7 +1,8 @@
 import telebot
 import timetable
+import os
 
-bot = telebot.TeleBot("896283170:AAEvIuBZNbjtqAnDC8B3ZBgJtuMP5V3AL0g")
+bot = telebot.TeleBot(os.environ['BOT_KEY'])
 
 
 @bot.message_handler(commands=['start', 'help'])
@@ -15,3 +16,4 @@ def echo_all(message):
     bot.reply_to(message, timetable.today_timetable(message.text))
 
 bot.polling()
+bot.set_webhook()
