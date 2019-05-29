@@ -1,1 +1,1 @@
-web: python -m pipenv run python main.py 0.0.0.0:8443
+worker: python -m pipenv run python main.py 0.0.0.0:8443
