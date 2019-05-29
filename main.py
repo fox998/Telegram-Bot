@@ -3,6 +3,7 @@ import telebot
 import time
 import timetable
 import os
+import logging
 
 
 BOT_KEY = os.environ['BOT_KEY']
@@ -16,6 +17,8 @@ bot.set_webhook(url=heroku_url)
 
 app = Flask(__name__)
 
+logger = telebot.logger
+telebot.logger.setLevel(logging.INFO)
 
 @app.route('/', methods=["POST"])
 def webhook():
@@ -35,6 +38,6 @@ def echo_all(message):
     bot.reply_to(message, timetable.today_timetable(message.text))
 
 
-app.run(debug=True)
+app.run(debug=True, port=8443)
 #https://protected-hollows-60635.herokuapp.com/
 
