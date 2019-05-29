@@ -15,4 +15,5 @@ def send_welcome(message):
 def echo_all(message):
     bot.reply_to(message, timetable.today_timetable(message.text))
 
+bot.deleteWebhook()
 bot.polling()
