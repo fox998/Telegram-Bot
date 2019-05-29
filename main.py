@@ -33,5 +33,5 @@ def echo_all(message):
     bot.reply_to(message, timetable.today_timetable(message.text))
 
 
-app.run(port=os.environ['PORT'])
+app.run()
 #https://protected-hollows-60635.herokuapp.com/
