@@ -9,7 +9,7 @@ import logging
 BOT_KEY = os.environ['BOT_KEY']
 bot = telebot.TeleBot(BOT_KEY)
 
-heroku_url = 'https://protected-hollows-60635.herokuapp.com/'
+heroku_url = f'https://protected-hollows-60635.herokuapp.com/{BOT_KEY}/'
 
 bot.remove_webhook()
 time.sleep(2)
@@ -20,7 +20,7 @@ app = Flask(__name__)
 logger = telebot.logger
 telebot.logger.setLevel(logging.INFO)
 
-@app.route('/', methods=["POST"])
+@app.route(f'/{BOT_KEY}/', methods=["POST"])
 def webhook():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     print("Message")
