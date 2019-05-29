@@ -47,7 +47,7 @@ from flask import Flask, request
 
 import telebot
 
-TOKEN = os.environ['BOT_KEY']
+TOKEN = '896283170:AAEvIuBZNbjtqAnDC8B3ZBgJtuMP5V3AL0g'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
