@@ -4,7 +4,9 @@ import time
 import timetable
 import os
 
-bot = telebot.TeleBot(os.environ['BOT_KEY'])
+
+BOT_KEY = os.environ['BOT_KEY']
+bot = telebot.TeleBot(BOT_KEY)
 
 heroku_url = 'https://protected-hollows-60635.herokuapp.com/'
 
@@ -35,3 +37,4 @@ def echo_all(message):
 
 app.run()
 #https://protected-hollows-60635.herokuapp.com/
+
