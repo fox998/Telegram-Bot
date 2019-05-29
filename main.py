@@ -1,8 +1,25 @@
+from flask import Flask, request
 import telebot
+import time
 import timetable
 import os
 
 bot = telebot.TeleBot(os.environ['BOT_KEY'])
+
+heroku_url = 'https://protected-hollows-60635.herokuapp.com/'
+
+bot.remove_webhook()
+time.sleep(2)
+bot.set_webhook(url=heroku_url)
+
+app = Flask(__name__)
+
+
+@app.route('/', methods=["POST"])
+def webhook():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    print("Message")
+    return "ok", 200
 
 
 @bot.message_handler(commands=['start', 'help'])
@@ -15,5 +32,6 @@ def send_welcome(message):
 def echo_all(message):
     bot.reply_to(message, timetable.today_timetable(message.text))
 
-bot.polling()
-bot.set_webhook()
+
+app.run(port=os.environ['PORT'])
+#https://protected-hollows-60635.herokuapp.com/

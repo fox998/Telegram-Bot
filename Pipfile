@@ -9,6 +9,7 @@ verify_ssl = true
 pytelegrambotapi = "*"
 beautifulsoup4 = "*"
 markdownify = "*"
+flask = "*"
 
 [requires]
 python_version = "3.6"
