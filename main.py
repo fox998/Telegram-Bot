@@ -35,6 +35,6 @@ def echo_all(message):
     bot.reply_to(message, timetable.today_timetable(message.text))
 
 
-app.run()
+app.run(debug=True)
 #https://protected-hollows-60635.herokuapp.com/
 
