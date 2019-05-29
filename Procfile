@@ -1,1 +1,1 @@
-web: python -m pipenv run python main.py $PORT
+worker: python -m pipenv run python main.py $PORT
