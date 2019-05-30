@@ -24,6 +24,8 @@ from flask import Flask, request
 
 import telebot
 
+import timetable
+
 TOKEN = os.environ['BOT_KEY']
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
