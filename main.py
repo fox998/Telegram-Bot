@@ -8,7 +8,7 @@ import telebot
 import timetable
 
 TOKEN = os.environ['BOT_KEY']
-SECRET = os.environ['SECRET']
+SECRET = os.environ['SERET']
 
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
