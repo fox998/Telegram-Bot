@@ -9,6 +9,7 @@ import timetable
 
 TOKEN = os.environ['BOT_KEY']
 SECRET = os.environ['SERET']
+HEROKU_APP_URL = os.environ['HEROKU_APP_URL']
 
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
@@ -34,7 +35,7 @@ def getMessage():
 @server.route(f"/{SECRET}")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url=f'https://protected-hollows-60635.herokuapp.com/{TOKEN}')
+    bot.set_webhook(url=f'{HEROKU_APP_URL}/{TOKEN}')
     return "!", 200
 
 
